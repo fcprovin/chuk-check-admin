@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+	<h5 class="card-header">SNS 리스트</h5>
+	<div class="table-responsive text-nowrap">
+		<table class="table">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>SNS 식별 번호</th>
+				<th>SNS 플랫폼</th>
+				<th>생성일자</th>
+				<th>수정일자</th>
+			</tr>
+			</thead>
+			<tbody class="table-border-bottom-0">
+			<tr th:each="item : ${list}">
+				<td><strong th:text="${item.id}">1</strong></td>
+				<td th:text="${item.uuid}">5cd91671-c4e9-4805-a330-7246ea77b03f</td>
+				<td th:text="${item.type}">KAKAO</td>
+				<td th:text="${item.createdDate}">2011-01-13</td>
+				<td th:text="${item.updatedDate}">2011-01-14</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--/ Basic Bootstrap Table -->
+</html>
