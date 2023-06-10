@@ -1,10 +1,10 @@
 package com.fcprovin.admin.api.dto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
-
-import java.util.LinkedHashMap;
 
 @Getter
 @Setter
@@ -16,9 +16,6 @@ public class ApiResponse<T> {
 
     public T getResult() {
         validationSuccess();
-        if (result instanceof LinkedHashMap) {
-
-        }
         return result;
     }
 
@@ -26,5 +23,12 @@ public class ApiResponse<T> {
         if (code != HttpStatus.OK.value()) {
             throw new IllegalArgumentException(message);
         }
+    }
+
+    public T getResult(Class<T> type) {
+        result = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .convertValue(result, type);
+        return getResult();
     }
 }
