@@ -54,11 +54,7 @@ public class ApiDefaultService {
                 .url(createUrl("auth/access-token"))
                 .body(tokenBody())
                 .build())
-                .getResult();
-    }
-
-    private TokenCreate tokenBody() {
-        return new TokenCreate(Long.valueOf(subject), JwtRole.valueOf(scope));
+                .getResult(Token.class);
     }
 
     private Token refreshToken() {
@@ -66,7 +62,11 @@ public class ApiDefaultService {
                 .url(createUrl("auth/refresh-token"))
                 .headers(headers -> headers.set(AUTHORIZATION, token.getRefreshToken()))
                 .build())
-                .getResult();
+                .getResult(Token.class);
+    }
+
+    private TokenCreate tokenBody() {
+        return new TokenCreate(Long.valueOf(subject), JwtRole.valueOf(scope));
     }
 
     private UriComponentsBuilder uriBuilder(String uri) {
