@@ -1,31 +1,23 @@
 package com.fcprovin.admin.web.player.form;
 
-import com.fcprovin.admin.domain.PlayerAuthority;
-import lombok.Builder;
-import lombok.Getter;
+import com.fcprovin.admin.web.player.domain.PlayerAuthority;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import static lombok.AccessLevel.PROTECTED;
-
-@Getter
-@NoArgsConstructor(access = PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PlayerCreateForm {
 
-    @NotEmpty
+    @NotNull
     private Long memberId;
 
-    @NotEmpty
+    @NotNull
     private Long teamId;
 
-    @NotEmpty
+    @NotNull
     private PlayerAuthority authority;
-
-    @Builder
-    public PlayerCreateForm(Long memberId, Long teamId, PlayerAuthority authority) {
-        this.memberId = memberId;
-        this.teamId = teamId;
-        this.authority = authority;
-    }
 }

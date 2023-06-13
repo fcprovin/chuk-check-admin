@@ -1,5 +1,8 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.player.domain;
 
+import com.fcprovin.admin.web.common.domain.BaseStatus;
+import com.fcprovin.admin.web.member.domain.Member;
+import com.fcprovin.admin.web.team.domain.Team;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
