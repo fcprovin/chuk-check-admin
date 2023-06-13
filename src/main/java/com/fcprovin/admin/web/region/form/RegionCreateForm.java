@@ -1,15 +1,14 @@
 package com.fcprovin.admin.web.region.form;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 
-import static lombok.AccessLevel.PROTECTED;
-
-@Getter
-@NoArgsConstructor(access = PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegionCreateForm {
 
     @NotEmpty
@@ -17,10 +16,4 @@ public class RegionCreateForm {
 
     @NotEmpty
     private String city;
-
-    @Builder
-    public RegionCreateForm(String country, String city) {
-        this.country = country;
-        this.city = city;
-    }
 }
