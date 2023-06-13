@@ -1,7 +1,7 @@
 package com.fcprovin.admin.web.team.search;
 
-import com.fcprovin.admin.domain.BaseStatus;
 import com.fcprovin.admin.web.SearchRequest;
+import com.fcprovin.admin.web.common.domain.BaseStatus;
 import lombok.Builder;
 import lombok.Data;
 
