@@ -1,4 +1,4 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.sns.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +9,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Team {
+public class Sns {
 
     private Long id;
-    private String name;
-    private BaseStatus status;
+    private String uuid;
+    private SnsType type;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private Region region;
 }

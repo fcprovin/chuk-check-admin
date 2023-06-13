@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Form controls -->
+<div class="card mb-4">
+	<h5 class="card-header">팀 생성</h5>
+	<form th:action th:object="${item}" method="post">
+		<div class="card-body">
+			<div class="mb-3">
+				<label for="regionId" class="form-label">지역 ID</label>
+				<input type="text" class="form-control" id="regionId" th:field="*{regionId}"/>
+			</div>
+			<div class="mb-3">
+				<label for="name" class="form-label">이름</label>
+				<input type="text" class="form-control" id="name" th:field="*{name}"/>
+			</div>
+			<button class="btn btn-primary" type="submit">등록</button>
+		</div>
+	</form>
+</div>
+</html>
+
+

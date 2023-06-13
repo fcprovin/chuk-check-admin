@@ -1,8 +1,8 @@
 package com.fcprovin.admin.web.player.form;
 
-import com.fcprovin.admin.domain.BaseStatus;
-import com.fcprovin.admin.domain.PlayerAuthority;
-import com.fcprovin.admin.domain.Position;
+import com.fcprovin.admin.web.common.domain.BaseStatus;
+import com.fcprovin.admin.web.player.domain.PlayerAuthority;
+import com.fcprovin.admin.web.player.domain.Position;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

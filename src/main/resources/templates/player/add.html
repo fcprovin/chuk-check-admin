@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Form controls -->
+<div class="card mb-4">
+	<h5 class="card-header">플레이어 생성</h5>
+	<form th:action th:object="${item}" method="post">
+		<div class="card-body">
+			<div class="mb-3">
+				<label for="memberId" class="form-label">회원 ID</label>
+				<input type="text" class="form-control" id="memberId" th:field="*{memberId}"/>
+			</div>
+			<div class="mb-3">
+				<label for="teamId" class="form-label">팀 ID</label>
+				<input type="text" class="form-control" id="teamId" th:field="*{teamId}"/>
+			</div>
+			<div class="mb-3">
+				<label for="type" class="form-label">직책</label>
+				<select class="form-select" id="type" th:field="*{authority}">
+					<option value="">==직책 선택==</option>
+					<option th:each="authority : ${playerAuthorityList}" th:value="${authority}" th:text="${authority.description}"></option>
+				</select>
+			</div>
+			<button class="btn btn-primary" type="submit">등록</button>
+		</div>
+	</form>
+</div>
+</html>
+
+

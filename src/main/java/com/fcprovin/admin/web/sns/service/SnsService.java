@@ -1,28 +1,59 @@
 package com.fcprovin.admin.web.sns.service;
 
-import com.fcprovin.admin.api.service.ApiService;
-import com.fcprovin.admin.domain.Sns;
+import com.fcprovin.admin.api.client.ApiServiceClient;
+import com.fcprovin.admin.api.dto.ApiRequest;
+import com.fcprovin.admin.api.dto.ApiResponse;
+import com.fcprovin.admin.web.common.service.BaseService;
+import com.fcprovin.admin.web.sns.domain.Sns;
 import com.fcprovin.admin.web.sns.form.SnsCreateForm;
-import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+
 @Service
-@RequiredArgsConstructor
-public class SnsService {
+public class SnsService extends BaseService {
 
-    private final ApiService apiService;
-
-    public List<Sns> findAll() {
-        return null;
+    public SnsService(ApiServiceClient serviceClient) {
+        super(serviceClient);
     }
 
-    public Sns find(Long id) {
-        return null;
+    @Override
+    protected String uri() {
+        return "/sns";
     }
 
-    public Long create(SnsCreateForm form) {
-        return null;
+    public List<Sns> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Sns>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
+    public Sns detail(Long id) {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri(id))
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<Sns>>() {})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
+    public Sns add(SnsCreateForm form) {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(POST)
+                        .uri(uri())
+                        .body(form)
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<Sns>>() {})
+                .map(ApiResponse::getResult)
+                .block();
     }
 }

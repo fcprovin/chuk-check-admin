@@ -1,6 +1,6 @@
 package com.fcprovin.admin.web.team.form;
 
-import com.fcprovin.admin.domain.BaseStatus;
+import com.fcprovin.admin.web.common.domain.BaseStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

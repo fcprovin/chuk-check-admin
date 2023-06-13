@@ -1,4 +1,4 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.region.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sns {
+public class Region {
 
     private Long id;
-    private String uuid;
-    private SnsType type;
+    private String country;
+    private String city;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 }

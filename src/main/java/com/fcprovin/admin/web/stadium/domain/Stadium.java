@@ -1,4 +1,4 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.stadium.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,16 +9,13 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Player {
+public class Stadium {
 
     private Long id;
-    private Integer uniformNumber;
-    private Position position;
-    private BaseStatus status;
-    private PlayerAuthority authority;
+    private String name;
+    private String address;
+    private double latitude;
+    private double longitude;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-
-    private Member member;
-    private Team team;
 }

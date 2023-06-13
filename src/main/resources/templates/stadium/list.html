@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+	<h5 class="card-header">구장 리스트</h5>
+</div>
+<div class="card-group navbar mb-0">
+	<div class="me-auto">
+		<div class="input-group">
+			<span class="input-group-text">총 건수</span>
+			<span class="input-group-text value" th:text="${list.size()}">136525</span>
+		</div>
+	</div>
+	<div class="col-auto">
+		<a th:href="@{/stadium/add}" class="btn btn-primary" role="button"><i class="bx bx-edit"></i> 등록</a>
+	</div>
+</div>
+<div class="card">
+	<div class="table-responsive text-nowrap">
+		<table class="table">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>이름</th>
+				<th>주소</th>
+				<th>생성일자</th>
+				<th>수정일자</th>
+			</tr>
+			</thead>
+			<tbody class="table-border-bottom-0">
+			<tr th:each="item : ${list}">
+				<td><a th:href="@{/stadium/{id}(id = ${item.id})}"><strong th:text="${item.id}">1</strong></a></td>
+				<td th:text="${item.name}">이름</td>
+				<td th:text="${item.address}">주소</td>
+				<td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd')}">2011-01-13</td>
+				<td th:text="${#temporals.format(item.updatedDate, 'yyyy-MM-dd')}">2011-01-14</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--/ Basic Bootstrap Table -->
+</html>

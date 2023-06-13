@@ -18,8 +18,8 @@
 
 	<ul class="menu-inner py-1">
 		<!-- Dashboard -->
-		<li class="menu-item active">
-			<a href="index.html" class="menu-link">
+		<li class="menu-item">
+			<a href="#" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-home-circle"></i>
 				<div data-i18n="Analytics">Dashboard</div>
 			</a>
@@ -28,37 +28,45 @@
 		<li class="menu-header small text-uppercase">
 			<span class="menu-header-text">User</span>
 		</li>
-		<li class="menu-item">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/member')
+			|| #httpServletRequest.getRequestURI().contains('/sns') ? 'open' : ''}">
 			<a href="javascript:void(0);" class="menu-link menu-toggle">
 				<i class="menu-icon tf-icons bx bx-user"></i>
-				<div data-i18n="User">회원 관리</div>
+				<div data-i18n="User Management">회원 관리</div>
 			</a>
 			<ul class="menu-sub">
-				<li class="menu-item">
-					<a href="#" class="menu-link">
+				<li class="menu-item"
+					th:classappend="${#httpServletRequest.getRequestURI().contains('/sns') ? 'active' : ''}">
+					<a href="#" th:href="@{/sns}" class="menu-link">
 						<div data-i18n="SNS">SNS</div>
 					</a>
 				</li>
-				<li class="menu-item">
-					<a href="#" class="menu-link">
+				<li class="menu-item"
+					th:classappend="${#httpServletRequest.getRequestURI().contains('/member') ? 'active' : ''}">
+					<a href="#" th:href="@{/member}" class="menu-link">
 						<div data-i18n="Member">회원</div>
 					</a>
 				</li>
 			</ul>
 		</li>
-		<li class="menu-item">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/team')
+			|| #httpServletRequest.getRequestURI().contains('/player') ? 'open' : ''}">>
 			<a href="javascript:void(0);" class="menu-link menu-toggle">
 				<i class="menu-icon tf-icons bx bx-group"></i>
 				<div data-i18n="Team Management">팀 관리</div>
 			</a>
 			<ul class="menu-sub">
-				<li class="menu-item">
-					<a href="#" class="menu-link" target="_blank">
+				<li class="menu-item"
+					th:classappend="${#httpServletRequest.getRequestURI().contains('/team') ? 'active' : ''}">
+					<a href="#" th:href="@{/team}" class="menu-link">
 						<div data-i18n="Team">팀</div>
 					</a>
 				</li>
-				<li class="menu-item">
-					<a href="#" class="menu-link" target="_blank">
+				<li class="menu-item"
+					th:classappend="${#httpServletRequest.getRequestURI().contains('/player') ? 'active' : ''}">
+					<a href="#" th:href="@{/player}" class="menu-link">
 						<div data-i18n="Player">플레이어</div>
 					</a>
 				</li>
@@ -68,20 +76,23 @@
 		<li class="menu-header small text-uppercase">
 			<span class="menu-header-text">Service</span>
 		</li>
-		<li class="menu-item">
-			<a href="#" class="menu-link">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/match') ? 'active' : ''}">
+			<a href="#" th:href="@{/match}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-trophy"></i>
 				<div data-i18n="Match">매치</div>
 			</a>
 		</li>
-		<li class="menu-item">
-			<a href="#" class="menu-link">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/vote') ? 'active' : ''}">
+			<a href="#" th:href="@{/vote}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-box"></i>
 				<div data-i18n="Vote">투표</div>
 			</a>
 		</li>
-		<li class="menu-item">
-			<a href="#" class="menu-link">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/attend') ? 'active' : ''}">
+			<a href="#" th:href="@{/attend}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-calendar-check"></i>
 				<div data-i18n="Attend">출석</div>
 			</a>
@@ -90,14 +101,16 @@
 		<li class="menu-header small text-uppercase">
 			<span class="menu-header-text">Management</span>
 		</li>
-		<li class="menu-item">
-			<a href="#" class="menu-link">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/region') ? 'active' : ''}">
+			<a href="#" th:href="@{/region}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-map-pin"></i>
 				<div data-i18n="Region">지역</div>
 			</a>
 		</li>
-		<li class="menu-item">
-			<a href="#" class="menu-link">
+		<li class="menu-item"
+			th:classappend="${#httpServletRequest.getRequestURI().contains('/stadium') ? 'active' : ''}">
+			<a href="#" th:href="@{/stadium}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-flag"></i>
 				<div data-i18n="Stadium">구장</div>
 			</a>

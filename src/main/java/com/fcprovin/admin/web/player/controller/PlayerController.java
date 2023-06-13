@@ -1,6 +1,8 @@
 package com.fcprovin.admin.web.player.controller;
 
-import com.fcprovin.admin.domain.Player;
+import com.fcprovin.admin.web.common.domain.BaseStatus;
+import com.fcprovin.admin.web.player.domain.PlayerAuthority;
+import com.fcprovin.admin.web.player.domain.Position;
 import com.fcprovin.admin.web.player.form.PlayerCreateForm;
 import com.fcprovin.admin.web.player.form.PlayerUpdateForm;
 import com.fcprovin.admin.web.player.search.PlayerSearch;
@@ -12,6 +14,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/player")
@@ -19,39 +26,54 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
+    @ModelAttribute
+    public List<BaseStatus> baseStatusList() {
+        return stream(BaseStatus.values()).collect(toList());
+    }
+
+    @ModelAttribute
+    public List<PlayerAuthority> playerAuthorityList() {
+        return stream(PlayerAuthority.values()).collect(toList());
+    }
+
+    @ModelAttribute
+    public List<Position> positionList() {
+        return stream(Position.values()).collect(toList());
+    }
+
     @GetMapping
     public String list(PlayerSearch search, Model model) {
-        model.addAttribute("list", playerService.findAll(search));
+        model.addAttribute("list", playerService.list(search));
         return "/player/list";
     }
 
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        model.addAttribute("item", playerService.find(id));
+        model.addAttribute("item", playerService.detail(id));
         return "/player/detail";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("item", new Player());
-        return "/player/create";
+    @GetMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("item", new PlayerCreateForm());
+        return "/player/add";
     }
 
-    @PostMapping("/create")
-    public String create(@Validated @ModelAttribute("item") PlayerCreateForm form, RedirectAttributes attributes) {
-        attributes.addAttribute("id", playerService.create(form));
-        return "redirect:/player/detail/{id}";
+    @PostMapping("/add")
+    public String add(@Validated @ModelAttribute("item") PlayerCreateForm form, RedirectAttributes attributes) {
+        attributes.addAttribute("id", playerService.add(form).getId());
+        return "redirect:/player/{id}";
     }
 
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("item", playerService.find(id));
-        return "/player/update";
+    @GetMapping("/modify/{id}")
+    public String modify(@PathVariable Long id, Model model) {
+        model.addAttribute("item", playerService.detail(id));
+        return "/player/modify";
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable Long id, @Validated @ModelAttribute("item") PlayerUpdateForm form) {
-        playerService.update(id, form);
-        return "redirect:/player/detail/{id}";
+    @PostMapping("/modify/{id}")
+    public String modify(@PathVariable Long id, @Validated @ModelAttribute("item") PlayerUpdateForm form) {
+        playerService.modify(id, form);
+        return "redirect:/player/{id}";
     }
 }
