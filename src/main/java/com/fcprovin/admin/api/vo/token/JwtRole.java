@@ -1,4 +1,4 @@
-package com.fcprovin.admin.api.token;
+package com.fcprovin.admin.api.vo.token;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
