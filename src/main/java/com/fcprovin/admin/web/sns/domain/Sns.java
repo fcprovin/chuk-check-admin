@@ -1,4 +1,4 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.sns.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

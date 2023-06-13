@@ -1,26 +1,18 @@
 package com.fcprovin.admin.web.sns.form;
 
-import com.fcprovin.admin.domain.SnsType;
-import lombok.Builder;
-import lombok.Getter;
+import com.fcprovin.admin.web.sns.domain.SnsType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 
-import static lombok.AccessLevel.PROTECTED;
-
-@Getter
-@NoArgsConstructor(access = PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SnsCreateForm {
 
     @NotEmpty
     private String uuid;
-
     private SnsType type;
-
-    @Builder
-    public SnsCreateForm(String uuid, SnsType type) {
-        this.uuid = uuid;
-        this.type = type;
-    }
 }
