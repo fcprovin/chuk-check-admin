@@ -1,7 +1,5 @@
 package com.fcprovin.admin.web.member.controller;
 
-import com.fcprovin.admin.domain.Member;
-import com.fcprovin.admin.domain.Sns;
 import com.fcprovin.admin.web.member.form.MemberCreateForm;
 import com.fcprovin.admin.web.member.search.MemberSearch;
 import com.fcprovin.admin.web.member.service.MemberService;
@@ -21,25 +19,26 @@ public class MemberController {
 
     @GetMapping
     public String list(MemberSearch search, Model model) {
-        model.addAttribute("list", memberService.findAll(search));
-        return "/member/list";
+        model.addAttribute("list", memberService.list(search));
+        return "member/list";
     }
 
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        model.addAttribute("item", memberService.find(id));
-        return "/member/detail";
+        model.addAttribute("item", memberService.detail(id));
+        return "member/detail";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("item", new Member());
-        return "/member/create";
+    @GetMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("item", new MemberCreateForm());
+        return "member/add";
     }
 
-    @PostMapping("/create")
-    public String create(@Validated @ModelAttribute("item") MemberCreateForm form, RedirectAttributes attributes) {
-        attributes.addAttribute("id", memberService.create(form));
-        return "redirect:/member/detail/{id}";
+    @PostMapping("/add")
+    public String add(@Validated @ModelAttribute("item") MemberCreateForm form,
+                      RedirectAttributes attributes) {
+        attributes.addAttribute("id", memberService.add(form).getId());
+        return "redirect:/member/{id}";
     }
 }

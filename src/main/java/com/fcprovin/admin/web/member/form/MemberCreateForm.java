@@ -1,21 +1,21 @@
 package com.fcprovin.admin.web.member.form;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-import static lombok.AccessLevel.PROTECTED;
-
-@Getter
-@NoArgsConstructor(access = PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberCreateForm {
 
-    @NotEmpty
+    @NotNull
     private Long snsId;
 
     @NotEmpty
@@ -26,12 +26,4 @@ public class MemberCreateForm {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
-
-    @Builder
-    public MemberCreateForm(Long snsId, String name, String email, LocalDate birthDate) {
-        this.snsId = snsId;
-        this.name = name;
-        this.email = email;
-        this.birthDate = birthDate;
-    }
 }
