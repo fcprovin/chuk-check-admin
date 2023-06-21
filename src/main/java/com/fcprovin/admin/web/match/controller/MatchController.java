@@ -1,7 +1,6 @@
 package com.fcprovin.admin.web.match.controller;
 
-import com.fcprovin.admin.domain.Match;
-import com.fcprovin.admin.domain.Player;
+import com.fcprovin.admin.web.match.domain.MatchStatus;
 import com.fcprovin.admin.web.match.form.MatchCreateForm;
 import com.fcprovin.admin.web.match.form.MatchUpdateForm;
 import com.fcprovin.admin.web.match.search.MatchSearch;
@@ -13,6 +12,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/match")
@@ -20,39 +24,44 @@ public class MatchController {
 
     private final MatchService matchService;
 
+    @ModelAttribute
+    public List<MatchStatus> matchStatusList() {
+        return stream(MatchStatus.values()).collect(toList());
+    }
+
     @GetMapping
     public String list(MatchSearch search, Model model) {
-        model.addAttribute("list", matchService.findAll(search));
+        model.addAttribute("list", matchService.list(search));
         return "/match/list";
     }
 
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        model.addAttribute("item", matchService.find(id));
+        model.addAttribute("item", matchService.detail(id));
         return "/match/detail";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("item", new Match());
-        return "/match/create";
+    @GetMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("item", new MatchCreateForm());
+        return "/match/add";
     }
 
-    @PostMapping("/create")
-    public String create(@Validated @ModelAttribute("item") MatchCreateForm form, RedirectAttributes attributes) {
-        attributes.addAttribute("id", matchService.create(form));
-        return "redirect:/match/detail/{id}";
+    @PostMapping("/add")
+    public String add(@Validated @ModelAttribute("item") MatchCreateForm form, RedirectAttributes attributes) {
+        attributes.addAttribute("id", matchService.add(form).getId());
+        return "redirect:/match/{id}";
     }
 
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("item", matchService.find(id));
-        return "/match/update";
+    @GetMapping("/modify/{id}")
+    public String modify(@PathVariable Long id, Model model) {
+        model.addAttribute("item", matchService.detail(id));
+        return "/match/modify";
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable Long id, @Validated @ModelAttribute("item") MatchUpdateForm form) {
-        matchService.update(id, form);
-        return "redirect:/match/detail/{id}";
+    @PostMapping("/modify/{id}")
+    public String modify(@PathVariable Long id, @Validated @ModelAttribute("item") MatchUpdateForm form) {
+        matchService.modify(id, form);
+        return "redirect:/match/{id}";
     }
 }

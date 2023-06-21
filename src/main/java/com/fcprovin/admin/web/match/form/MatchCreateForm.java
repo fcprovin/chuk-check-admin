@@ -1,67 +1,45 @@
 package com.fcprovin.admin.web.match.form;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-import static lombok.AccessLevel.PROTECTED;
+import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME;
 
-@Getter
-@NoArgsConstructor(access = PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MatchCreateForm {
 
-    @NotEmpty
+    @NotNull
     private Long teamId;
 
-    @NotEmpty
+    @NotNull
     private Long stadiumId;
 
     private String otherTeamName;
 
-    @NotEmpty
+    @NotNull
     private Boolean home;
 
     private String notice;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(iso = DATE_TIME)
     private LocalDateTime startDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(iso = DATE_TIME)
     private LocalDateTime endDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(iso = DATE_TIME)
     private LocalDateTime voteStartDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(iso = DATE_TIME)
     private LocalDateTime voteEndDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(iso = DATE_TIME)
     private LocalDateTime attendDeadlineDate;
-
-    @Builder
-    public MatchCreateForm(Long teamId,
-                           Long stadiumId,
-                           String otherTeamName,
-                           Boolean home,
-                           String notice,
-                           LocalDateTime startDate,
-                           LocalDateTime endDate,
-                           LocalDateTime voteStartDate,
-                           LocalDateTime voteEndDate,
-                           LocalDateTime attendDeadlineDate) {
-        this.teamId = teamId;
-        this.stadiumId = stadiumId;
-        this.otherTeamName = otherTeamName;
-        this.home = home;
-        this.notice = notice;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.voteStartDate = voteStartDate;
-        this.voteEndDate = voteEndDate;
-        this.attendDeadlineDate = attendDeadlineDate;
-    }
 }

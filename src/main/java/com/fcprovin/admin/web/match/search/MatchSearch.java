@@ -1,7 +1,7 @@
 package com.fcprovin.admin.web.match.search;
 
-import com.fcprovin.admin.domain.MatchStatus;
 import com.fcprovin.admin.web.SearchRequest;
+import com.fcprovin.admin.web.match.domain.MatchStatus;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

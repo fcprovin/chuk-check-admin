@@ -1,5 +1,9 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.match.domain;
 
+import com.fcprovin.admin.web.attend.domain.AttendDate;
+import com.fcprovin.admin.web.stadium.domain.Stadium;
+import com.fcprovin.admin.web.team.domain.Team;
+import com.fcprovin.admin.web.vote.domain.VoteDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

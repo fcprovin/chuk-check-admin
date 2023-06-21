@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Form controls -->
+<div class="card mb-4">
+	<h5 class="card-header">매치 생성</h5>
+	<form th:action th:object="${item}" method="post">
+		<div class="card-body">
+			<div class="form-check form-switch mb-3">
+				<label class="form-check-label" for="home">홈여부</label>
+				<input class="form-check-input" type="checkbox" id="home" th:field="*{home}">
+			</div>
+			<div class="mb-3">
+				<label for="teamId" class="form-label">팀 ID</label>
+				<input type="text" class="form-control" id="teamId" th:field="*{teamId}"/>
+			</div>
+			<div class="mb-3">
+				<label for="stadiumId" class="form-label">구장 ID</label>
+				<input type="text" class="form-control" id="stadiumId" th:field="*{stadiumId}"/>
+			</div>
+			<div class="mb-3">
+				<label for="otherTeamName" class="form-label">상대팀명</label>
+				<input type="text" class="form-control" id="otherTeamName" th:field="*{otherTeamName}"/>
+			</div>
+			<div class="mb-3">
+				<label for="notice" class="form-label">공지</label>
+				<textarea class="form-control" id="notice" rows="3" th:field="*{notice}"></textarea>
+			</div>
+			<div class="mb-3">
+				<label for="startDate" class="col-md-2 col-form-label">매치시작일자</label>
+				<input type="datetime-local" class="form-control" id="startDate" th:field="*{startDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="endDate" class="col-md-2 col-form-label">매치종료일자</label>
+				<input type="datetime-local" class="form-control" id="endDate" th:field="*{endDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="voteStartDate" class="col-md-2 col-form-label">투표시작일자</label>
+				<input type="datetime-local" class="form-control" id="voteStartDate" th:field="*{voteStartDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="voteEndDate" class="col-md-2 col-form-label">투표종료일자</label>
+				<input type="datetime-local" class="form-control" id="voteEndDate" th:field="*{voteEndDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="attendDeadlineDate" class="col-md-2 col-form-label">출석마감일자</label>
+				<input type="datetime-local" class="form-control" id="attendDeadlineDate" th:field="*{attendDeadlineDate}"/>
+			</div>
+			<button class="btn btn-primary" type="submit">등록</button>
+		</div>
+	</form>
+</div>
+</html>
+
+
