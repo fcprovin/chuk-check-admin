@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Form controls -->
+<div class="card mb-4">
+	<h5 class="card-header">매치 수정</h5>
+	<form th:action th:object="${item}" method="post">
+		<div class="card-body">
+			<div class="form-check form-switch mb-3">
+				<label class="form-check-label" for="home">홈여부</label>
+				<input class="form-check-input" type="checkbox" id="home" th:field="*{home}">
+			</div>
+			<div class="mb-3">
+				<label for="id" class="form-label">ID</label>
+				<input type="text" class="form-control" id="id" th:value="${item.id}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="teamName" class="form-label">팀명</label>
+				<input type="text" class="form-control" id="teamName" th:value="${item.team.name}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="memberName" class="form-label">상대팀명</label>
+				<input type="text" class="form-control" id="memberName" th:field="*{otherTeamName}"/>
+			</div>
+			<div class="mb-3">
+				<label for="notice" class="form-label">공지</label>
+				<textarea class="form-control" id="notice" rows="3" th:field="*{notice}"></textarea>
+			</div>
+			<div class="mb-3">
+				<label for="stadiumId" class="col-md-2 col-form-label">구장 ID</label>
+				<input type="text" class="form-control" id="stadiumId" th:name="stadiumId" th:value="*{stadium.id}"/>
+			</div>
+			<div class="mb-3">
+				<label for="status" class="form-label">상태</label>
+				<select class="form-select" id="status" th:field="*{status}">
+					<option value="">==상태 선택==</option>
+					<option th:each="matchStatus : ${matchStatusList}" th:value="${matchStatus}" th:text="${matchStatus.description}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="startDate" class="col-md-2 col-form-label">매치시작일자</label>
+				<input type="datetime-local" class="form-control" id="startDate" th:name="startDate" th:value="*{matchDate.startDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="endDate" class="col-md-2 col-form-label">매치종료일자</label>
+				<input type="datetime-local" class="form-control" id="endDate" th:name="endDate" th:value="*{matchDate.endDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="voteStartDate" class="col-md-2 col-form-label">투표시작일자</label>
+				<input type="datetime-local" class="form-control" id="voteStartDate" th:name="voteStartDate" th:value="*{voteDate.startDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="voteEndDate" class="col-md-2 col-form-label">투표종료일자</label>
+				<input type="datetime-local" class="form-control" id="voteEndDate" th:name="voteEndDate" th:value="*{voteDate.endDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="attendDeadlineDate" class="col-md-2 col-form-label">출석마감일자</label>
+				<input type="datetime-local" class="form-control" id="attendDeadlineDate" th:name="attendDeadlineDate" th:value="*{attendDate.deadlineDate}"/>
+			</div>
+			<div class="mb-3">
+				<label for="createdDate" class="form-label">생성일자</label>
+				<input type="text" class="form-control" id="createdDate" th:value="${item.createdDate}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="updatedDate" class="form-label">수정일자</label>
+				<input type="text" class="form-control" id="updatedDate" th:value="${item.updatedDate}" readonly/>
+			</div>
+			<button class="btn btn-primary" type="submit">수정</button>
+		</div>
+	</form>
+</div>
+</html>
+
+
