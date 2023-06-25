@@ -1,7 +1,7 @@
 package com.fcprovin.admin.web.attend.search;
 
-import com.fcprovin.admin.domain.AttendStatus;
 import com.fcprovin.admin.web.SearchRequest;
+import com.fcprovin.admin.web.attend.domain.AttendStatus;
 import lombok.Builder;
 import lombok.Data;
 
