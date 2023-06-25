@@ -1,4 +1,4 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.attend.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

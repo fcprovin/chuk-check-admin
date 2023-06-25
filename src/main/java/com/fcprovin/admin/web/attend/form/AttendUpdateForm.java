@@ -1,6 +1,6 @@
 package com.fcprovin.admin.web.attend.form;
 
-import com.fcprovin.admin.domain.AttendStatus;
+import com.fcprovin.admin.web.attend.domain.AttendStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
