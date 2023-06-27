@@ -1,31 +1,24 @@
 package com.fcprovin.admin.web.vote.form;
 
-import com.fcprovin.admin.domain.VoteStatus;
-import lombok.Builder;
-import lombok.Getter;
+import com.fcprovin.admin.web.vote.domain.VoteStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import static lombok.AccessLevel.PROTECTED;
-
-@Getter
-@NoArgsConstructor(access = PROTECTED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class VoteCreateForm {
 
-    @NotEmpty
+    @NotNull
     private Long playerId;
 
-    @NotEmpty
+    @NotNull
     private Long matchId;
 
     @NotEmpty
     private VoteStatus status;
-
-    @Builder
-    public VoteCreateForm(Long playerId, Long matchId, VoteStatus status) {
-        this.playerId = playerId;
-        this.matchId = matchId;
-        this.status = status;
-    }
 }
