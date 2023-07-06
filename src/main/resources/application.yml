@@ -1,15 +1,12 @@
 server:
    port: 8888
 
+spring:
+  profiles:
+    include:
+    - token
+    - user
+
 api:
    host: http://api.provin.com:8080
    version : v1
-
-token:
-   subject: 1
-   scope: ROLE_ADMIN
-
-user:
-   details:
-      username: admin
-      password: admin
