@@ -1,6 +1,6 @@
 package com.fcprovin.admin.web.vote.form;
 
-import com.fcprovin.admin.domain.VoteStatus;
+import com.fcprovin.admin.web.vote.domain.VoteStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

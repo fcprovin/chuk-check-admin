@@ -1,4 +1,4 @@
-package com.fcprovin.admin.domain;
+package com.fcprovin.admin.web.vote.domain;
 
 import lombok.Builder;
 import lombok.Getter;

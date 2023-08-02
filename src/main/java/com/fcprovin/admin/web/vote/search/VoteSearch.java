@@ -1,7 +1,7 @@
 package com.fcprovin.admin.web.vote.search;
 
-import com.fcprovin.admin.domain.VoteStatus;
 import com.fcprovin.admin.web.SearchRequest;
+import com.fcprovin.admin.web.vote.domain.VoteStatus;
 import lombok.Builder;
 import lombok.Data;
 

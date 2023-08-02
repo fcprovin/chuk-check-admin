@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Form controls -->
+<div class="card mb-4">
+	<h5 class="card-header">투표 수정</h5>
+	<form th:action th:object="${item}" method="post">
+		<div class="card-body">
+			<div class="mb-3">
+				<label for="id" class="form-label">ID</label>
+				<input type="text" class="form-control" id="id" th:value="${item.id}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="memberName" class="form-label">플레이어명</label>
+				<input type="text" class="form-control" id="memberName" th:value="${item.player.member.name}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="teamName" class="form-label">팀명</label>
+				<input type="text" class="form-control" id="teamName" th:value="${item.player.team.name}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="status" class="form-label">상태</label>
+				<select class="form-select" id="status" th:field="*{status}">
+					<option value="">==상태 선택==</option>
+					<option th:each="voteStatus : ${voteStatusList}" th:value="${voteStatus}" th:text="${voteStatus.description}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="startDate" class="form-label">매치시작일자</label>
+				<input type="text" class="form-control" id="startDate" th:value="${item.match.matchDate.startDate}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="endDate" class="form-label">매치종료일자</label>
+				<input type="text" class="form-control" id="endDate" th:value="${item.match.matchDate.endDate}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="createdDate" class="form-label">생성일자</label>
+				<input type="text" class="form-control" id="createdDate" th:value="${item.createdDate}" readonly/>
+			</div>
+			<div class="mb-3">
+				<label for="updatedDate" class="form-label">수정일자</label>
+				<input type="text" class="form-control" id="updatedDate" th:value="${item.updatedDate}" readonly/>
+			</div>
+			<button class="btn btn-primary" type="submit">수정</button>
+		</div>
+	</form>
+</div>
+</html>
+
+

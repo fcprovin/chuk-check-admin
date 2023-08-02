@@ -1,36 +1,71 @@
 package com.fcprovin.admin.web.vote.service;
 
-import com.fcprovin.admin.api.service.ApiService;
-import com.fcprovin.admin.domain.Match;
-import com.fcprovin.admin.domain.Sns;
-import com.fcprovin.admin.domain.Vote;
+import com.fcprovin.admin.api.client.ApiServiceClient;
+import com.fcprovin.admin.api.dto.ApiRequest;
+import com.fcprovin.admin.api.dto.ApiResponse;
+import com.fcprovin.admin.web.common.service.BaseService;
+import com.fcprovin.admin.web.vote.domain.Vote;
 import com.fcprovin.admin.web.vote.form.VoteCreateForm;
 import com.fcprovin.admin.web.vote.form.VoteUpdateForm;
 import com.fcprovin.admin.web.vote.search.VoteSearch;
-import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static org.springframework.http.HttpMethod.*;
+
 @Service
-@RequiredArgsConstructor
-public class VoteService {
+public class VoteService extends BaseService {
 
-    private final ApiService apiService;
-
-    public List<Vote> findAll(VoteSearch search) {
-        return null;
+    public VoteService(ApiServiceClient serviceClient) {
+        super(serviceClient);
     }
 
-    public Vote find(Long id) {
-        return null;
+    @Override
+    protected String uri() {
+        return "/vote";
     }
 
-    public Long create(VoteCreateForm form) {
-        return null;
+    public List<Vote> list(VoteSearch search) {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri(search))
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Vote>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
     }
 
-    public void update(Long id, VoteUpdateForm form) {
+    public Vote detail(Long id) {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri(id))
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<Vote>>() {})
+                .map(ApiResponse::getResult)
+                .block();
+    }
 
+    public Vote add(VoteCreateForm form) {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(POST)
+                        .uri(uri())
+                        .body(form)
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<Vote>>() {})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
+    public void modify(Long id, VoteUpdateForm form) {
+        serviceClient.execute(ApiRequest.builder()
+                        .method(PUT)
+                        .uri(uri(id))
+                        .body(form)
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<Vote>>() {})
+                .map(ApiResponse::getResult)
+                .block();
     }
 }
