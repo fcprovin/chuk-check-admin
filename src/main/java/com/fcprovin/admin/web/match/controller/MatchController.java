@@ -5,6 +5,9 @@ import com.fcprovin.admin.web.match.form.MatchCreateForm;
 import com.fcprovin.admin.web.match.form.MatchUpdateForm;
 import com.fcprovin.admin.web.match.search.MatchSearch;
 import com.fcprovin.admin.web.match.service.MatchService;
+import com.fcprovin.admin.web.stadium.service.StadiumService;
+import com.fcprovin.admin.web.team.search.TeamSearch;
+import com.fcprovin.admin.web.team.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+import static com.fcprovin.admin.web.common.domain.BaseStatus.APPROVE;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
@@ -22,7 +26,9 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/match")
 public class MatchController {
 
+    private final TeamService teamService;
     private final MatchService matchService;
+    private final StadiumService stadiumService;
 
     @ModelAttribute
     public List<MatchStatus> matchStatusList() {
@@ -43,6 +49,8 @@ public class MatchController {
 
     @GetMapping("/add")
     public String add(Model model) {
+        model.addAttribute("teamList", teamService.list(TeamSearch.builder().status(APPROVE).build()));
+        model.addAttribute("stadiumList", stadiumService.list());
         model.addAttribute("item", new MatchCreateForm());
         return "/match/add";
     }

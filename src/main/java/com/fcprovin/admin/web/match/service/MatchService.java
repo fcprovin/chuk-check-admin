@@ -27,6 +27,16 @@ public class MatchService extends BaseService {
         return "/match";
     }
 
+    public List<Match> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Match>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
     public List<Match> list(MatchSearch search) {
         return serviceClient.execute(ApiRequest.builder()
                         .method(GET)

@@ -13,11 +13,17 @@
 			</div>
 			<div class="mb-3">
 				<label for="teamId" class="form-label">팀 ID</label>
-				<input type="text" class="form-control" id="teamId" th:field="*{teamId}"/>
+				<select class="form-select" id="teamId" th:field="*{teamId}">
+					<option value="">==ID 선택==</option>
+					<option th:each="team : ${teamList}" th:value="${team.id}" th:text="${team.name}"></option>
+				</select>
 			</div>
 			<div class="mb-3">
 				<label for="stadiumId" class="form-label">구장 ID</label>
-				<input type="text" class="form-control" id="stadiumId" th:field="*{stadiumId}"/>
+				<select class="form-select" id="stadiumId" th:field="*{stadiumId}">
+					<option value="">==ID 선택==</option>
+					<option th:each="stadium : ${stadiumList}" th:value="${stadium.id}" th:text="${stadium.name}"></option>
+				</select>
 			</div>
 			<div class="mb-3">
 				<label for="otherTeamName" class="form-label">상대팀명</label>

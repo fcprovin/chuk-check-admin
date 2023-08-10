@@ -9,6 +9,7 @@ public enum MatchStatus {
 
     CREATE("생성"),
     VOTE("투표"),
+    MATCH("매치"),
     ATTEND("출석"),
     FINISH("완료");
 
