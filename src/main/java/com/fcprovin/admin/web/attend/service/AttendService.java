@@ -27,6 +27,16 @@ public class AttendService extends BaseService {
         return "/attend";
     }
 
+    public List<Attend> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Attend>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
     public List<Attend> list(AttendSearch search) {
         return serviceClient.execute(ApiRequest.builder()
                         .method(GET)

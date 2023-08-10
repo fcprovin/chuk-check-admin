@@ -35,9 +35,14 @@
 			<tr th:each="item : ${list}">
 				<td><a th:href="@{/attend/{id}(id = ${item.id})}"><strong th:text="${item.id}">1</strong></a></td>
 				<td th:text="${item.player.member.name}">홍길동</td>
-				<td th:text="${item.player.team.name}">홍길동</td>
-				<td th:text="${item.status.description}">test@test.com</td>
-				<td th:text="${#temporals.format(item.match.matchDate.startDate, 'yyyy-MM-dd')}">2011-01-13</td>
+				<td th:text="${item.player.team.name}">팀명</td>
+				<td>
+					<span class="badge me-1"
+						  th:classappend="${item.status.toString().toLowerCase()}"
+						  th:text="${item.status.description}">출석
+					</span>
+				</td>
+				<td th:text="${#temporals.format(item.match.matchDate.startDate, 'yyyy-MM-dd HH:mm')}">2011-01-13 12:00</td>
 				<td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd')}">2011-01-13</td>
 				<td th:text="${#temporals.format(item.updatedDate, 'yyyy-MM-dd')}">2011-01-14</td>
 			</tr>

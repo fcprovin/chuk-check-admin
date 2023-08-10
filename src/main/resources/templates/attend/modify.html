@@ -20,12 +20,12 @@
 				<input type="text" class="form-control" id="teamName" th:value="${item.player.team.name}" readonly/>
 			</div>
 			<div class="mb-3">
-					<label for="status" class="form-label">상태</label>
-					<select class="form-select" id="status" th:field="*{status}">
-						<option value="">==상태 선택==</option>
-						<option th:each="attendStatus : ${attendStatusList}" th:value="${attendStatus}" th:text="${attendStatus.description}"></option>
-					</select>
-				</div>
+				<label for="status" class="form-label">상태</label>
+				<select class="form-select" id="status" th:field="*{status}">
+					<option value="">==상태 선택==</option>
+					<option th:each="attendStatus : ${attendStatusList}" th:value="${attendStatus}" th:text="${attendStatus.description}"></option>
+				</select>
+			</div>
 			<div class="mb-3">
 				<label for="startDate" class="form-label">매치시작일자</label>
 				<input type="text" class="form-control" id="startDate" th:value="${item.match.matchDate.startDate}" readonly/>

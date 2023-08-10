@@ -38,8 +38,8 @@
 			<label for="updatedDate" class="form-label">수정일자</label>
 			<input type="text" class="form-control" id="updatedDate" th:value="${item.updatedDate}" readonly/>
 		</div>
-		<a class="btn btn-secondary" th:href="@{/match}">취소</a>
-		<a class="btn btn-primary" th:href="@{/match/modify/{id}(id = ${item.id})}">수정</a>
+		<a class="btn btn-secondary" th:href="@{/attend}">취소</a>
+		<a class="btn btn-primary" th:href="@{/attend/modify/{id}(id = ${item.id})}">수정</a>
 	</div>
 </div>
 </html>
