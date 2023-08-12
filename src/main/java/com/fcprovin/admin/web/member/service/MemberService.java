@@ -27,6 +27,16 @@ public class MemberService extends BaseService {
         return "/member";
     }
 
+    public List<Member> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Member>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
     public List<Member> list(MemberSearch search) {
         return serviceClient.execute(ApiRequest.builder()
                         .method(GET)

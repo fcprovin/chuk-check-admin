@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
-      xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org">
 
 <!-- Form controls -->
 <div class="card mb-4">
@@ -9,7 +9,10 @@
 		<div class="card-body">
 			<div class="mb-3">
 				<label for="snsId" class="form-label">SNS ID</label>
-				<input type="text" class="form-control" id="snsId" th:field="*{snsId}"/>
+				<select class="form-select" id="snsId" th:field="*{snsId}">
+					<option value="">==ID 선택==</option>
+					<option th:each="sns : ${snsList}" th:value="${sns.id}" th:text="|(${sns.type.description}) ${sns.uuid}|"></option>
+				</select>
 			</div>
 			<div class="mb-3">
 				<label for="name" class="form-label">이름</label>
