@@ -3,6 +3,7 @@ package com.fcprovin.admin.web.member.controller;
 import com.fcprovin.admin.web.member.form.MemberCreateForm;
 import com.fcprovin.admin.web.member.search.MemberSearch;
 import com.fcprovin.admin.web.member.service.MemberService;
+import com.fcprovin.admin.web.sns.service.SnsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
 
     private final MemberService memberService;
+    private final SnsService snsService;
 
     @GetMapping
     public String list(MemberSearch search, Model model) {
@@ -31,6 +33,7 @@ public class MemberController {
 
     @GetMapping("/add")
     public String add(Model model) {
+        model.addAttribute("snsList", snsService.list());
         model.addAttribute("item", new MemberCreateForm());
         return "member/add";
     }

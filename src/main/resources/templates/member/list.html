@@ -36,8 +36,8 @@
 				<td th:text="${item.name}">홍길동</td>
 				<td th:text="${item.email}">test@test.com</td>
 				<td th:text="${item.birthDate}">2011-01-13</td>
-				<td th:text="${item.createdDate}">2011-01-13</td>
-				<td th:text="${item.updatedDate}">2011-01-14</td>
+				<td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd')}">2011-01-13</td>
+				<td th:text="${#temporals.format(item.updatedDate, 'yyyy-MM-dd')}">2011-01-14</td>
 			</tr>
 			</tbody>
 		</table>
