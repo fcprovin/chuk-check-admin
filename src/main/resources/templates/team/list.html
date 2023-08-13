@@ -33,7 +33,12 @@
 			<tr th:each="item : ${list}">
 				<td><a th:href="@{/team/{id}(id = ${item.id})}"><strong th:text="${item.id}">1</strong></a></td>
 				<td th:text="${item.name}">홍길동</td>
-				<td th:text="${item.status.description}">test@test.com</td>
+				<td>
+					<span class="badge me-1"
+						  th:classappend="${item.status.toString().toLowerCase()}"
+						  th:text="${item.status.description}">승인
+					</span>
+				</td>
 				<td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd')}">2011-01-13</td>
 				<td th:text="${#temporals.format(item.updatedDate, 'yyyy-MM-dd')}">2011-01-14</td>
 			</tr>

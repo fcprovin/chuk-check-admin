@@ -9,7 +9,10 @@
 		<div class="card-body">
 			<div class="mb-3">
 				<label for="regionId" class="form-label">지역 ID</label>
-				<input type="text" class="form-control" id="regionId" th:field="*{regionId}"/>
+				<select class="form-select" id="regionId" th:field="*{regionId}">
+					<option value="">==ID 선택==</option>
+					<option th:each="region : ${regionList}" th:value="${region.id}" th:text="|${region.country} ${region.city}|"></option>
+				</select>
 			</div>
 			<div class="mb-3">
 				<label for="name" class="form-label">이름</label>
