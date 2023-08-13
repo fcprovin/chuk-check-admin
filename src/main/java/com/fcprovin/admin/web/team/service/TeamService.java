@@ -27,6 +27,16 @@ public class TeamService extends BaseService {
         return "/team";
     }
 
+     public List<Team> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Team>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
     public List<Team> list(TeamSearch search) {
         return serviceClient.execute(ApiRequest.builder()
                         .method(GET)

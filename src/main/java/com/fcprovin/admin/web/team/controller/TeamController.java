@@ -1,6 +1,7 @@
 package com.fcprovin.admin.web.team.controller;
 
 import com.fcprovin.admin.web.common.domain.BaseStatus;
+import com.fcprovin.admin.web.region.service.RegionService;
 import com.fcprovin.admin.web.team.form.TeamCreateForm;
 import com.fcprovin.admin.web.team.form.TeamUpdateForm;
 import com.fcprovin.admin.web.team.search.TeamSearch;
@@ -23,6 +24,7 @@ import static java.util.stream.Collectors.toList;
 public class TeamController {
 
     private final TeamService teamService;
+    private final RegionService regionService;
 
     @ModelAttribute
     public List<BaseStatus> baseStatusList() {
@@ -43,6 +45,7 @@ public class TeamController {
 
     @GetMapping("/add")
     public String add(Model model) {
+        model.addAttribute("regionList", regionService.list());
         model.addAttribute("item", new TeamCreateForm());
         return "/team/add";
     }
