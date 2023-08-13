@@ -27,6 +27,16 @@ public class PlayerService extends BaseService {
         return "/player";
     }
 
+    public List<Player> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Player>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
     public List<Player> list(PlayerSearch search) {
         return serviceClient.execute(ApiRequest.builder()
                         .method(GET)

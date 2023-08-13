@@ -9,11 +9,17 @@
 		<div class="card-body">
 			<div class="mb-3">
 				<label for="memberId" class="form-label">회원 ID</label>
-				<input type="text" class="form-control" id="memberId" th:field="*{memberId}"/>
+				<select class="form-select" id="memberId" th:field="*{memberId}">
+					<option value="">==ID 선택==</option>
+					<option th:each="member : ${memberList}" th:value="${member.id}" th:text="${member.name}"></option>
+				</select>
 			</div>
 			<div class="mb-3">
 				<label for="teamId" class="form-label">팀 ID</label>
-				<input type="text" class="form-control" id="teamId" th:field="*{teamId}"/>
+				<select class="form-select" id="teamId" th:field="*{teamId}">
+					<option value="">==ID 선택==</option>
+					<option th:each="team : ${teamList}" th:value="${team.id}" th:text="${team.name}"></option>
+				</select>
 			</div>
 			<div class="mb-3">
 				<label for="type" class="form-label">직책</label>

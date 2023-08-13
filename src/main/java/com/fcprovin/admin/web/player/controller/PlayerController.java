@@ -1,12 +1,16 @@
 package com.fcprovin.admin.web.player.controller;
 
 import com.fcprovin.admin.web.common.domain.BaseStatus;
+import com.fcprovin.admin.web.member.search.MemberSearch;
+import com.fcprovin.admin.web.member.service.MemberService;
 import com.fcprovin.admin.web.player.domain.PlayerAuthority;
 import com.fcprovin.admin.web.player.domain.Position;
 import com.fcprovin.admin.web.player.form.PlayerCreateForm;
 import com.fcprovin.admin.web.player.form.PlayerUpdateForm;
 import com.fcprovin.admin.web.player.search.PlayerSearch;
 import com.fcprovin.admin.web.player.service.PlayerService;
+import com.fcprovin.admin.web.team.search.TeamSearch;
+import com.fcprovin.admin.web.team.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+import static com.fcprovin.admin.web.common.domain.BaseStatus.APPROVE;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
@@ -25,6 +30,8 @@ import static java.util.stream.Collectors.toList;
 public class PlayerController {
 
     private final PlayerService playerService;
+    private final MemberService memberService;
+    private final TeamService teamService;
 
     @ModelAttribute
     public List<BaseStatus> baseStatusList() {
@@ -55,6 +62,8 @@ public class PlayerController {
 
     @GetMapping("/add")
     public String add(Model model) {
+        model.addAttribute("memberList", memberService.list(MemberSearch.builder().build()));
+        model.addAttribute("teamList", teamService.list(TeamSearch.builder().status(APPROVE).build()));
         model.addAttribute("item", new PlayerCreateForm());
         return "/player/add";
     }
