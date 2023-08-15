@@ -1,5 +1,11 @@
 package com.fcprovin.admin.web.vote.controller;
 
+import com.fcprovin.admin.web.match.search.MatchSearch;
+import com.fcprovin.admin.web.match.service.MatchService;
+import com.fcprovin.admin.web.player.search.PlayerSearch;
+import com.fcprovin.admin.web.player.service.PlayerService;
+import com.fcprovin.admin.web.team.search.TeamSearch;
+import com.fcprovin.admin.web.team.service.TeamService;
 import com.fcprovin.admin.web.vote.domain.VoteStatus;
 import com.fcprovin.admin.web.vote.form.VoteCreateForm;
 import com.fcprovin.admin.web.vote.form.VoteUpdateForm;
@@ -14,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+import static com.fcprovin.admin.web.common.domain.BaseStatus.APPROVE;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
@@ -23,6 +30,9 @@ import static java.util.stream.Collectors.toList;
 public class VoteController {
 
     private final VoteService voteService;
+    private final TeamService teamService;
+    private final MatchService matchService;
+    private final PlayerService playerService;
 
     @ModelAttribute
     public List<VoteStatus> voteStatusList() {
@@ -42,8 +52,12 @@ public class VoteController {
     }
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model, @RequestParam(required = false) Long teamId) {
+        model.addAttribute("teamList", teamService.list(TeamSearch.builder().status(APPROVE).build()));
+        model.addAttribute("playerList", playerService.list(PlayerSearch.builder().teamId(teamId).build()));
+        model.addAttribute("matchList", matchService.list(MatchSearch.builder().teamId(teamId).build()));
         model.addAttribute("item", new VoteCreateForm());
+        model.addAttribute("teamId", teamId);
         return "/vote/add";
     }
 

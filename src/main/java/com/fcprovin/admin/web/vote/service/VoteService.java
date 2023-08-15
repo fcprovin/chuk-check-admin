@@ -27,6 +27,16 @@ public class VoteService extends BaseService {
         return "/vote";
     }
 
+    public List<Vote> list() {
+        return serviceClient.execute(ApiRequest.builder()
+                        .method(GET)
+                        .uri(uri())
+                        .build())
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<List<Vote>>>(){})
+                .map(ApiResponse::getResult)
+                .block();
+    }
+
     public List<Vote> list(VoteSearch search) {
         return serviceClient.execute(ApiRequest.builder()
                         .method(GET)
