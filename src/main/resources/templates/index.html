@@ -1,13 +1,176 @@
 <!DOCTYPE html>
-<html th:replace="~{layout/default :: layout(~{::title}, ~{::section})}"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>메인 페이지 타이틀</title>
-</head>
-<body>
-<section>
-    <p>메인 페이지 컨텐츠</p>
-    <div>메인 페이지 포함 내용</div>
-</section>
-</body>
+<html th:replace="~{layout/default :: layout(~{::title}, ~{::div})}"
+	  xmlns:th="http://www.thymeleaf.org">
+<div class="row">
+	<div class="col-md-6 col-lg-4 order-0 mb-4">
+		<div class="card h-100">
+			<div class="card-header d-flex align-items-center justify-content-between">
+				<h5 class="card-title m-0 me-2">유저</h5>
+			</div>
+			<div class="card-body">
+				<ul class="p-0 m-0">
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/wallet.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#USER</small>
+								<h6 class="mb-0">SNS</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${sns}">+82.6</h6>
+								<span class="text-muted">명</span>
+							</div>
+						</div>
+					</li>
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/wallet.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#USER</small>
+								<h6 class="mb-0">회원</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${member}">+82.6</h6>
+								<span class="text-muted">명</span>
+							</div>
+						</div>
+					</li>
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/wallet-info.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#USER</small>
+								<h6 class="mb-0">팀</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${team}">+270.69</h6>
+								<span class="text-muted">개</span>
+							</div>
+						</div>
+					</li>
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/wallet-info.png" alt="User"
+								 class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#USER</small>
+								<h6 class="mb-0">플레이어</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${player}">+637.91</h6>
+								<span class="text-muted">명</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-lg-4 order-1 mb-4">
+		<div class="card h-100">
+			<div class="card-header d-flex align-items-center justify-content-between">
+				<h5 class="card-title m-0 me-2">서비스</h5>
+			</div>
+			<div class="card-body">
+				<ul class="p-0 m-0">
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/cc-primary.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#SERVICE</small>
+								<h6 class="mb-0">매치</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${match}">-838.71</h6>
+								<span class="text-muted">개</span>
+							</div>
+						</div>
+					</li>
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/cc-success.png" alt="User"
+								 class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#SERVICE</small>
+								<h6 class="mb-0">투표</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${vote}">+203.33</h6>
+								<span class="text-muted">개</span>
+							</div>
+						</div>
+					</li>
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/cc-warning.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#SERVICE</small>
+								<h6 class="mb-0">출석</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${attend}">-92.45</h6>
+								<span class="text-muted">개</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-lg-4 order-2 mb-4">
+		<div class="card h-100">
+			<div class="card-header d-flex align-items-center justify-content-between">
+				<h5 class="card-title m-0 me-2">관리</h5>
+			</div>
+			<div class="card-body">
+				<ul class="p-0 m-0">
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/chart.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#MANAGEMENT</small>
+								<h6 class="mb-0">지역</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${region}">-92.45</h6>
+								<span class="text-muted">개</span>
+							</div>
+						</div>
+					</li>
+					<li class="d-flex mb-4 pb-1">
+						<div class="avatar flex-shrink-0 me-3">
+							<img src="/assets/img/icons/unicons/chart-success.png" alt="User" class="rounded"/>
+						</div>
+						<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+							<div class="me-2">
+								<small class="text-muted d-block mb-1">#MANAGEMENT</small>
+								<h6 class="mb-0">구장</h6>
+							</div>
+							<div class="user-progress d-flex align-items-center gap-1">
+								<h6 class="mb-0" th:text="${stadium}">-92.45</h6>
+								<span class="text-muted">개</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 </html>
