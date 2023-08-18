@@ -33,7 +33,12 @@
 			<tr th:each="item : ${list}">
 				<td><a th:href="@{/sns/{id}(id = ${item.id})}"><strong th:text="${item.id}">1</strong></a></td>
 				<td th:text="${item.uuid}">5cd91671-c4e9-4805-a330-7246ea77b03f</td>
-				<td th:text="${item.type.description}">KAKAO</td>
+				<td>
+					<span class="badge me-1"
+						  th:classappend="${item.type.toString().toLowerCase()}"
+						  th:text="${item.type.description}">KAKAO
+					</span>
+				</td>
 				<td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd')}">2011-01-13</td>
 				<td th:text="${#temporals.format(item.updatedDate, 'yyyy-MM-dd')}">2011-01-14</td>
 			</tr>
