@@ -20,4 +20,14 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Function JS -->
+<script>
+	$(function () {
+		$("#team").on("change", function (){
+		   $("#teamId").val($(this).val());
+		   $("#searchForm").submit();
+		});
+	});
+</script>
 </th:block>
